@@ -5,7 +5,7 @@ Part of the **Riddles** brand (5-app family). See brand strategy in `../PLAN.md`
 ## This App
 - **Category:** logic / lateral-thinking riddles.
 - **Repo:** https://github.com/DEVENDRAP7/Riddles-brain.git
-- **Package id (planned):** `com.riddles.brain` (confirm before build).
+- **Package id (FINAL, permanent):** `com.devendrap7.riddles.brain`
 - **Accent color:** purple. Glyph: brain.
 - **Privacy policy URL:** TBD (separate per app).
 

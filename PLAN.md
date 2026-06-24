@@ -44,12 +44,36 @@ Part of the **Riddles** brand (5-app family). See brand strategy in `../PLAN.md`
 ## Monetization — Ads only (no IAP)
 - Rewarded (hint/solution), app-open, banner, interstitial (placement TBD). AdMob + consent.
 
-## Content
-- 100 logic riddles, AI-generated + verified, bundled as local JSON.
-- Text answers → normalize (trim/lowercase/strip spaces) before match; may need fuzzy/alias matching.
+## Content — DONE
+- `ProblemSet.md` (rewritten) + `content_levels.json` (build-ready) created.
+- **100 unique single-word answers**, fill-in-blank ready: articles stripped (HOLE not "A hole"), zero duplicates, no multi-word, all A–Z uppercase. Letter counts range 3–10.
+- Each level: `level`, `question`, `answer` (UPPERCASE), `hint`.
+- Bands: classic riddles (1–25), everyday objects (26–50), nature & sky (51–75), weather/plants/creatures (76–90), adventure (91–100). Difficulty ascends; level number = order.
+
+## Gameplay format — Fill-in-the-blank (Brain-specific)
+- Show **blank tiles = number of letters** in the answer (`answer.length`).
+- Player taps an on-screen **A–Z keypad** (same approach as the Maths number pad) to fill the tiles.
+- **No system keyboard ever** — no TextField. Custom keypad + Backspace + CHECK only.
+- Answer match: uppercase compare, strip spaces (answers already normalized).
 
 ## Stack
 - Flutter, Riverpod, Hive, go_router, google_mobile_ads.
 
-## Status
-- [ ] Not started. Awaiting build command. Do NOT code until user says go.
+## Build Status
+- [x] Content locked (100 unique single-word answers + JSON).
+- [x] Input design locked (A–Z keypad, fill-in-blank, no system keyboard).
+- [ ] App NOT scaffolded yet — clone from the Maths template (built first).
+
+## Reference: Maths template (already built — Brain will clone it)
+The Maths app is the working template. Brain reuses its structure, swapping accent
+colour (purple), app name "Riddles - Brain", id `com.devendrap7.riddles.brain`,
+content `content_levels.json`, and the number pad → **A–Z keypad + letter tiles**.
+Template features built so far:
+- Flutter, Android-only; 2 tabs (Home + Levels) via go_router ShellRoute, Play pushed on top.
+- Home: animated title, progress badge, big PLAY → current level.
+- Levels: 100-tile grid (solved=green ✓, current=yellow pulsing, locked=grey 🔒); next locks until current solved.
+- Play: question card, **custom keypad (no system keyboard)**, hint → solution, confetti on solve, unlock next.
+- Cartoon scene background: gradient sky, sun + rotating light rays, multiple drifting clouds, hills; two-frame palette that pans Home↔Levels.
+- **Walking-human navbar** (transparent, merged into scene): procedural figure walks a road at the bottom, carries the active wooden signboard on his head, runs between Home/Levels boards on tab switch, faces travel direction.
+- Progress stored locally via Hive. **No ads, no Firebase yet** (deliberately deferred for now).
+- Deps: flutter_riverpod, hive/hive_flutter, go_router, google_fonts, flutter_animate, confetti.
